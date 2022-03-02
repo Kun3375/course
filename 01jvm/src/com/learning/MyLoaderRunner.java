@@ -14,7 +14,7 @@ public class MyLoaderRunner extends ClassLoader {
     public static void main(String[] args) throws Exception {
         MyClassLoader loader = new MyClassLoader();
         Class<?> classHello = loader.loadClass("Hello");
-        Object instanceHello = classHello.newInstance();
+        Object instanceHello = classHello.getDeclaredConstructor().newInstance();
         Method methodHello = classHello.getMethod("hello");
         methodHello.invoke(instanceHello);
     }
