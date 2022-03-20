@@ -8,6 +8,7 @@ mvn -f pom2.xml clean package
 # 启动 server
 nohup java -jar target_server/server.jar &
 echo "\n--- sleep 3 for sever start---\n"
+sleep 3
 # 请求 server
 java -jar target_client/client.jar
 echo "\n---remember kill server ps---\n"
