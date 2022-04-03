@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    embedded-database-connection: h2
+    url: jdbc:h2:mem://localhost:9092/test;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    hikari:
+      idle-timeout: 900000
+      minimum-idle: 3
+      maximum-pool-size: 15
+      connection-timeout: 5000
+      connection-test-query: select 1
+
+homework:
+  p2:
+    enabled: false

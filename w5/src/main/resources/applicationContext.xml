@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                        http://www.springframework.org/schema/aop
+                        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="goodStudent"
+          class="com.kun.p1.model.StudentImpl">
+        <property name="id" value="3375" />
+        <property name="name" value="JavaMaster" />
+    </bean>
+
+    <bean id="badStudent" class="com.kun.p1.model.StudentImpl">
+        <property name="id" value="6379" />
+        <property name="name" value="Rookie" />
+    </bean>
+
+    <bean id="camps" class="com.kun.p1.model.Klass">
+        <property name="name" value="camp" />
+        <property name="students">
+            <list>
+                <ref bean="goodStudent" />
+                <ref bean="badStudent" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="geekSchool" class="com.kun.p1.model.School">
+        <property name="name" value="geekSchool" />
+        <property name="klasses">
+            <list>
+                <ref bean="camps" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="aop" class="com.kun.p1.aop.PointDemo" />
+    <aop:aspectj-autoproxy  />
+    <aop:config>
+        <aop:pointcut expression="execution(public void com.kun.p1.model.Student.*(..))" id="pointcut" />
+        <aop:aspect ref="aop">
+            <aop:around method="around" pointcut-ref="pointcut" />
+        </aop:aspect>
+    </aop:config>
+
+</beans>
