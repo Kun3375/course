@@ -1,0 +1,13 @@
+
+datasource:
+  main:
+    url: jdbc:mysql:///test
+    username: root
+    password: 123456
+  slave:
+    url: jdbc:mysql:///test_2
+    username: root
+    password: 123456
+spring:
+  profiles:
+    include: sharding
