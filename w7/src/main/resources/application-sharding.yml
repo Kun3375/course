@@ -5,26 +5,27 @@ spring:
       datasource0:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql:///test
+        jdbc-url: jdbc:mysql://localhost:3306/datasource0
         username: root
         password: 123456
       datasource1:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql:///test
+        jdbc-url: jdbc:mysql://localhost:3306/datasource1
         username: root
         password: 123456
-    tables:
-      order:
-        actual-data-nodes: datasource_$->{0..1}.order
-        key-generator:
-          column: id
-          type: SNOWFLAKE
-        database-strategy:
-          inline:
-            sharding-column: id
-            algorithm-expression: datasource_$->{id % 2}
-#        table-strategy:
-#          inline:
-#            sharding-column:
-#            algorithm-expression:
+    sharding:
+      tables:
+        t_order:
+          actual-data-nodes: datasource$->{0..1}.order
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+          database-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: datasource_$->{id % 2}
+#          table-strategy:
+#            inline:
+#              sharding-column:
+#              algorithm-expression:

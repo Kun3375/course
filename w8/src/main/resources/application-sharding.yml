@@ -1,0 +1,31 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: sds0,sds1
+      sds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/sharding_ds_0
+        username: root
+        password: 3375
+      sds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/sharding_ds_1
+        username: root
+        password: 3375
+    sharding:
+      tables:
+        t_order:
+          actual-data-nodes: sds$->{0..1}.sharding_order_$->{0..15}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+          database-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: sds$->{id % 2}
+          table-strategy:
+            inline:
+              sharding-column: customer_id
+              algorithm-expression: sharding_order_$->{customer_id % 16}
