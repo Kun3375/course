@@ -1,0 +1,31 @@
+hmily:
+  server:
+    configMode: local
+  config:
+    appName: servb
+    serializer: kryo
+    contextTransmittalMode: threadLocal
+    scheduledThreadMax: 16
+    scheduledRecoveryDelay: 60
+    scheduledCleanDelay: 60
+    scheduledPhyDeletedDelay: 600
+    scheduledInitDelay: 30
+    recoverDelayTime: 60
+    cleanDelayTime: 180
+    limit: 200
+    retryMax: 10
+    bufferSize: 8192
+    consumerThreads: 16
+    asyncRepository: true
+    autoSql: true
+    phyDeleted: true
+    storeDays: 3
+    repository: file
+  support:
+    rpc:
+      annotation: true
+
+repository:
+  file:
+    path: ./hmily_temp
+    prefix: /hmily

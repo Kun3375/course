@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: serva
+  datasource:
+    url: jdbc:mysql://localhost:3306/serva
+    username: root
+    password: 3375
+dubbo:
+  registry:
+    address: zookeeper://127.0.0.1:2181
