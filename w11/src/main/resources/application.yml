@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: app
+  datasource:
+    url: jdbc:mysql://localhost:3306/servb
+    username: root
+    password: 3375
+  redis:
+    host: localhost
+
